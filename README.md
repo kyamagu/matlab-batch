@@ -32,8 +32,9 @@ input and the output contains the same number of elements. To process a
 complex input, use a struct array instead of a numeric array.
 
     function exampleBatchUsage()
-    %EXAMPLEBATCHUSAGE Another example of the usage.
-      scheduler = createJobScheduler('shard_size', 5);
+    %EXAMPLEBATCHUSAGE Another usage example.
+      scheduler = SGEJobScheduler('shard_size', 5, ...
+                                  'extra_options', '-l hostname=host1');
       input_data = struct('index', num2cell(1:100));
       additional_input = 'some flag';
       output_data = scheduler.execute(@processBatch, ...
