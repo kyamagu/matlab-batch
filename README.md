@@ -20,7 +20,7 @@ distributed jobs. Note the function handle `@(x)x+1` takes a vector with
 100 / 5 = 20 elements at each distributed job.
 
     addpath('/path/to/matlab-batch');
-    scheduler = createJobScheduler('shard_size', 5);
+    scheduler = createJobScheduler('ShardSize', 5);
     input_data = 1:100;
     output_data = scheduler.execute(@(x)x+1, input_data);
     disp(output_data);
@@ -33,8 +33,8 @@ complex input, use a struct array instead of a numeric array.
 
     function exampleBatchUsage()
     %EXAMPLEBATCHUSAGE Another usage example.
-      scheduler = SGEJobScheduler('shard_size', 5, ...
-                                  'extra_options', '-l hostname=host1');
+      scheduler = SGEJobScheduler('ShardSize', 5, ...
+                                  'ExtraOptions', '-l hostname=host1');
       input_data = struct('index', num2cell(1:100));
       additional_input = 'some flag';
       output_data = scheduler.execute(@processBatch, ...

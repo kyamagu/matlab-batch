@@ -17,16 +17,7 @@ classdef BaseJobScheduler
   methods
     function this = BaseJobScheduler(varargin)
       %BASEJOBSCHEDULER Create an instance the job scheduler.
-      fields = properties(this);
-      for i = 1:2:numel(varargin)
-        index = strcmpi(varargin{i}, fields);
-        if any(index)
-          this.(fields{index}) = feval(class(this.(fields{index})), ...
-                                       varargin{i+1});
-        else
-          error('Unknown option: %s.', varargin{i});
-        end
-      end
+      this = getOptions(this, varargin{:});
     end
 
     function flag = isAvailable()
@@ -44,6 +35,7 @@ classdef BaseJobScheduler
   end
 
   methods (Access = protected)
+    this = getOptions(this, varargin)
     task_index = getTaskIndex(this)
     data = loadAndCollectData(this)
     this = splitAndSaveData(this, function_handle, data)
