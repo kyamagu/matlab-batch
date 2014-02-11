@@ -50,6 +50,13 @@ complex input, use a struct array instead of a numeric array.
       end
     end
 
+Tips
+----
+
+ * Be careful about the data size. If you assign large data to each element of
+   the output, you will run out of memory. To generate large data in the
+   output, save them in an external file and return an array of file names.
+
 TODO
 ----
 
