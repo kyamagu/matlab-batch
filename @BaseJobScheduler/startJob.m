@@ -5,7 +5,12 @@ function startJob(work_directory)
   this.logMessage('Input: %s', input_file);
   this.logMessage('Output: %s', output_file);
   load(input_file, 'keys', 'values');
-  values = feval(this.function_handle, values, this.extra_arguments{:});
+  if nargout(this.function_handle) == 0
+    feval(this.function_handle, values, this.extra_arguments{:});
+    values = [];
+  else
+    values = feval(this.function_handle, values, this.extra_arguments{:});
+  end
   keys = handleInconsistentKeys(keys, values);
   save(output_file, 'keys', 'values');
 end
