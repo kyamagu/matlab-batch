@@ -2,7 +2,6 @@ classdef SGEJobScheduler < BaseJobScheduler
   %SGEJOBSCHEDULER SGE batch job execution library.
   properties
     log_directory = 'log' % Where SGE job output is written to.
-    extra_options = ''    % Any extra options to qsub.
   end
 
   methods

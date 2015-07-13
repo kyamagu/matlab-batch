@@ -19,7 +19,8 @@ function scheduler = createJobScheduler(varargin)
   root_directory = fileparts(mfilename('fullpath'));
   subclasses = findSubclasses(root_directory, 'BaseJobScheduler');
   % Fake scheduler must be the last.
-  subclasses = [setdiff(subclasses, 'FakeJobScheduler'), 'FakeJobScheduler'];
+  special_schedulers = {'ParforJobScheduler', 'FakeJobScheduler'};
+  subclasses = [setdiff(subclasses, special_schedulers), special_schedulers];
 
   available_index = cellfun(@(name)feval([name,'.isAvailable']), subclasses);
   assert(any(available_index), 'No scheduler is available.');

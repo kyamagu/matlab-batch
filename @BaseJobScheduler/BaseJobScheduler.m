@@ -4,6 +4,7 @@ classdef BaseJobScheduler
     temporary_directory = 'tmp' % Location of the temporary directory.
     shard_size = 100            % Size of the batch.
     log_enabled = true          % Flag to enable/disable logging message.
+    extra_options = ''          % Any extra options to the backend.
   end
 
   properties (SetAccess = protected)
@@ -17,7 +18,7 @@ classdef BaseJobScheduler
   methods
     function this = BaseJobScheduler(varargin)
       %BASEJOBSCHEDULER Create an instance the job scheduler.
-      this = getOptions(this, varargin{:});
+      [this, ~] = this.getOptions(varargin{:});
     end
 
     function flag = isAvailable()
@@ -35,7 +36,7 @@ classdef BaseJobScheduler
   end
 
   methods (Access = protected)
-    this = getOptions(this, varargin)
+    [this, remaining_arguments] = getOptions(this, varargin)
     task_index = getTaskIndex(this)
     data = loadAndCollectData(this)
     this = splitAndSaveData(this, function_handle, data)

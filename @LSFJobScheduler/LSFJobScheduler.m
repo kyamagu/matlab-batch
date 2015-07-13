@@ -2,8 +2,7 @@ classdef LSFJobScheduler < BaseJobScheduler
   %LSFJOBSCHEDULER LSF batch job execution library.
   properties
     log_output = 'log/%J-%I.log' % Where LSF job output is written to.
-    poll_interval = 10           % Interval in seconds to check if jobs are finished.
-    extra_options = ''           % Any extra options to bsub.
+    poll_interval = 10           % Interval in seconds to check if finished.
   end
 
   methods

@@ -10,6 +10,7 @@ Currently following job schedulers are supported.
 
  * Sun Grid Engine (`qsub`)
  * Platform LSF (`bsub`)
+ * Matlab Parallel Computing Toolbox supporting `parpool`
  * Fake scheduler for debugging
 
 Example
@@ -56,8 +57,3 @@ Tips
  * Be careful about the data size. If you assign large data to each element of
    the output, you will run out of memory. To generate large data in the
    output, save them in an external file and return an array of file names.
-
-TODO
-----
-
- * Add a wrapper for Matlab parallel processing toolbox.
