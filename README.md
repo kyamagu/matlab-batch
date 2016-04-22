@@ -4,7 +4,7 @@ BATCH
 Distributed Matlab job execution library.
 
  * High-level Matlab wrapper over computing grid infrastracture.
- * No requirement for the Matlab parallel processing toolbox.
+ * Matlab parallel processing toolbox not required.
 
 Currently following job schedulers are supported.
 
